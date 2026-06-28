@@ -100,7 +100,7 @@ TEST(findHostPort, NoHost) {
     auto [host, port] = findHostPort(req);
 
     EXPECT_EQ(host, "");
-    EXPECT_EQ(port, "");
+    EXPECT_EQ(port, "80");
 }
 
 TEST(findHostPort, NoPort) {
@@ -109,7 +109,7 @@ TEST(findHostPort, NoPort) {
     auto [host, port] = findHostPort(req);
 
     EXPECT_EQ(host, "ya.ru");
-    EXPECT_EQ(port, "");
+    EXPECT_EQ(port, "80");
 }
 
 TEST(findContentLength, Simple) {

@@ -36,16 +36,12 @@ awaitable<void> session(tcp::socket client_socket, io_service &io_service) {
         std::string request;
         co_await async_read_until(client_socket, dynamic_buffer(request), delimiter, use_awaitable);
 
-        // ищем хост и номер порта в заголовках
+        // ищем хост и номер порта в заголовках (порт = 80 по умолчанию)
         auto [host, port] = findHostPort(request);
         if (host.size() == 0) {
             std::cerr << "No host found";
             client_socket.close();
             co_return;
-        }
-        // если порт не указан, используем 80
-        if (port.size() == 0) {
-            port = "80";
         }
 
         // резольвим хост и порт
